@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor; // Gera construtor sem argumentos
 import java.util.List; // Importa a interface List
 import java.util.ArrayList; // Importa a classe ArrayList (para inicialização)
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity // Indica que esta classe é uma entidade JPA e será mapeada para uma tabela no banco de dados
 @Table(name = "products") // Define o nome da tabela no banco de dados (opcional, se não especificado usa o nome da classe)
 @Data // Anotação do Lombok para gerar getters, setters, toString, equals e hashCode
@@ -27,6 +29,10 @@ public class Product {
     @Column(nullable = false) // Mapeia para uma coluna, não permite nulos
     private Double price;
 
+    @Column(length = 225) // bom tamanho para URLs
+    private String imageUrl; // imagem do produto
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>(); // Inicializa a lista para evitar NullPointerException
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor; // Gera construtor com todos os argumentos
 import lombok.Data; // Gera getters, setters, toString, equals e hashCode
 import lombok.NoArgsConstructor; // Gera construtor sem argumentos
 
+import com.fasterxml.jackson.annotation.JsonBackReference; // <-- Adicione esta importação
+
 @Entity // Indica que esta classe é uma entidade JPA e será mapeada para uma tabela no banco de dados
 @Table(name = "reviews") // Define o nome da tabela no banco de dados
 @Data // Anotação do Lombok para gerar getters, setters, toString, equals e hashCode
@@ -28,5 +30,6 @@ public class Review {
     // --- Relacionamento Many-to-One com Product ---
     @ManyToOne // Indica um relacionamento muitos para um (muitas Reviews para um Produto)
     @JoinColumn(name = "product_id", nullable = false) // Define a coluna da chave estrangeira na tabela 'reviews'
+    @JsonBackReference
     private Product product; // A avaliação pertence a um único Produto
 }

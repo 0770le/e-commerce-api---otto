@@ -1,5 +1,5 @@
 # Use uma imagem base do OpenJDK. Para Java 17, o sem a '-jre' é preferível.
-FROM openjdk:17-jdk-slim
+FROM maven:3.9.6-openjdk-17
 
 # Crie um diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -7,9 +7,6 @@ WORKDIR /app
 # Copie o arquivo pom.xml para o diretório de trabalho
 # Isso aproveita o cache do Docker se as dependências não mudarem
 COPY pom.xml .
-
-# Baixe as dependências do Maven (o build será feito mais tarde)
-RUN mvn dependency:go-offline
 
 # Copie o código fonte da sua aplicação
 COPY src ./src

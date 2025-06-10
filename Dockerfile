@@ -1,5 +1,5 @@
 # Use uma imagem base do OpenJDK. Para Java 17, o sem a '-jre' é preferível.
-FROM maven:3.9.6-openjdk-17
+FROM maven:3-openjdk-17
 
 # Crie um diretório de trabalho dentro do contêiner
 WORKDIR /app
